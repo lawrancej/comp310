@@ -172,7 +172,7 @@ Submit work to wrap this up.
 5. Select the New Text Document.txt (or whatever you renamed it to out of habit), and click the single down arrow Stage button.
 6. Type in a commit message (e.g., My first commit), and click Commit & push.
 7. Just say Yes to anything it asks about.
-8. At some point you will see a push dialog box. The default remote is `origin`, and you should push to `origin`, not to `professor`. Click Push.
+8. At some point you may see a push dialog box. The default remote is `origin`, and you should push to `origin`, not to `professor`. Click Push.
 8. If all went well, you will see the commit on your project when you reload the page.
 
 # References

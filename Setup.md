@@ -1,8 +1,6 @@
-# Course setup overview
+# Course setup overview (Windows)
 
-These instructions guide Windows users through installing all necessary course software and setting up a course repository for submitting work. 
-
-Mac/Linux users, please see Setup-Mac.md or Setup-Linux.md.
+These instructions guide Windows users through installing all necessary course software and setting up a course repository for submitting work.
 
 You need a good internet connection and an hour or two to complete these instructions. All errors and omissions are mine. Feel free to share your improvements to these instructions (pull requests are welcome).
 
@@ -95,17 +93,13 @@ Now create a place to submit your work, called a remote repository. **You need t
 ## Bitbucket users
 
 1. [Create a new, empty private repository](https://bitbucket.org/repo/create), called **comp310**. Don't play with the other settings, just go with the defaults (DO NOT initialize the repository with a README).
-
 2. Once created, you will see your new remote repository. Bookmark this page in your browser, so you can get back to it later.
 
 ## Github users
 
 1. [Request private repositories for educational purposes as a student](http://github.com/edu). Github's turn around time is short; however, the start of a semester is the busiest time for this, and an actual person reviews all requests from students.
-
 2. [Create a new, empty public repository](https://github.com/new), called **comp310**. Don't play around with the other settings, just go with the defaults (DO NOT initialize the repository with a README).
-
 3. Once created, you will see your new remote repository. Bookmark this page in your browser, so you can get back to it later.
-
 4.  When Github confirms that you are a student, make the repository you created private by clicking on the wrench and screwdriver icon (it's **Settings**, not **Account settings**) and scroll down to the **Danger Zone** and click **Make private**. 
 
 # 8. Push to your remote repository
@@ -128,7 +122,7 @@ Under Quick Setup, select and copy the SSH URL to the clipboard (It should look 
 4. Click the Up arrow (Push). Click Push.
 5. Reload your Bitbucket or Github repository page. If all went well, you will see **COMP310: Data Structures**. 
 
-# 9. Share your repository with me and watch mine
+# 9. Share your repo with me and watch mine
 
 Right now, nobody but you can see your remote repository; you need to add me as a collaborator so that I can see the work you submit. Also, I will make updates frequently during the semester, and I won't email you when I make changes, so you'll want to watch my repository to receive change notifications.
 

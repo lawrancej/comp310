@@ -44,15 +44,15 @@ Use Chocolatey to install software.
 
 1. Open cmd.exe and copy/paste the following:
 
-    cinst Sudo
+        cinst Sudo
 
 2. Close the command prompt, and reopen it. Copy/paste the following:
 
-    sudo cinst git gitextensions cmake kdiff3 python pip gradle nuget notepadplusplus
+        sudo cinst git gitextensions cmake kdiff3 python pip gradle nuget notepadplusplus
 
 3. If you are a CS major, you probably have Java and the JDK installed already. If not:
 
-    sudo cinst javaruntime java.jdk
+        sudo cinst javaruntime java.jdk
 
 # Configure Git
 
@@ -113,7 +113,7 @@ Now create a place to submit your work, called a remote repository. **You need t
 
 ## Github users
 
-1. [Request private repositories for educational purposes as a student](http://github.com/edu)Github's turn around time is short; however, the start of a semester is the busiest time for this, and an actual person reviews all requests from students.
+1. [Request private repositories for educational purposes as a student](http://github.com/edu). Github's turn around time is short; however, the start of a semester is the busiest time for this, and an actual person reviews all requests from students.
 
 2. [Create a new, empty public repository](https://github.com/new), called **comp310**. Don't play around with the other settings, just go with the defaults (DO NOT initialize the repository with a README).
 
@@ -173,7 +173,7 @@ Submit work to wrap this up.
 6. Type in a commit message (e.g., My first commit), and click Commit & push.
 7. Just say Yes to anything it asks about.
 8. At some point you may see a push dialog box. The default remote is `origin`, and you should push to `origin`, not to `professor`. Click Push.
-8. If all went well, you will see the commit on your project when you reload the page.
+8. If all went well, you will see the commit on Bitbucket or Github when you reload it.
 
 # References
 

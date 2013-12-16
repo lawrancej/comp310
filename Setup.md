@@ -6,20 +6,7 @@ Mac/Linux users, please see Setup-Mac.md or Setup-Linux.md.
 
 You need a good internet connection and an hour or two to complete these instructions. All errors and omissions are mine. Feel free to share your improvements to these instructions (pull requests are welcome).
 
-Overview of steps:
-
-1. Install a package manager
-2. Install packages
-3. Configure Git
-4. Create an account on a project host
-5. Setup SSH keys
-6. Create your local repository
-7. Create your remote repository
-8. Push to your remote repository
-9. Share your repository with me and watch mine
-10. Practice work submission
-
-# Install a package manager
+# 1. Install a package manager
 
 You need to download [Chocolatey](http://chocolatey.org/) by copying the following command, opening the Command Prompt (cmd.exe), and pasting by right clicking and selecting Paste (please do not try to type this in manually, I guarantee you will f**k it up).
 
@@ -27,7 +14,7 @@ You need to download [Chocolatey](http://chocolatey.org/) by copying the followi
 
 If you are using Windows 7 or earlier, you will also need to install [PowerShell 3](http://www.microsoft.com/en-us/download/details.aspx?id=34595) before you run Chocolatey, as Chocolatey depends on it.
 
-# Install packages
+# 2. Install packages
 
 In this course, you are welcome to choose among Java, C++ or Python for your projects. I intend to use each of these languages at least once in class, so you might as well install these packages now.
 
@@ -54,13 +41,13 @@ Use Chocolatey to install software.
 
         sudo cinst javaruntime java.jdk
 
-# Configure Git
+# 3. Configure Git
 
 1. Open Git Extensions. You will see a Checklist of issues the first time you run this program. (If you accidentally closed it out already, go to Tools -> Settings).
 2. Unless you've already done this before, your user name and email address are not configured. Click Repair.
 3. Enter your full name (e.g., John Smith) for your user name, and your Wentworth email as your User email. Click OK.
 
-# Create an account on a project host
+# 4. Create an account on a project host
 
 I don't use Blackboard or email for work submission. Instead, use git to push work to a remote repository on a project host.
 
@@ -69,7 +56,7 @@ I don't use Blackboard or email for work submission. Instead, use git to push wo
 3. [Complete this form](https://docs.google.com/forms/d/1lsSvVQVRlnIKl8qp5sSWwy-BgxyqnYGEvDzGLoQXV28/viewform) so that I know where to look for your work.
 4. Set up a [Gravatar](http://en.gravatar.com/) with your *@wit.edu* email address if you want to help the professor associate your user name with your face.
 
-# Setup SSH keys
+# 5. Setup SSH keys
 
 You don't want to type in your password every time you submit work, do you? Of course not. You will need to generate an SSH public/private kepair ([what's that?](https://www.youtube.com/watch?v=3QnD2c4Xovk)), and share it with your project host.
 
@@ -87,7 +74,7 @@ You don't want to type in your password every time you submit work, do you? Of c
 2. The interface for Bitbucket and Github are pretty much the same at this point.
 3. Click Add key, and then paste in your public SSH key into the key field. For the title, use a nickname for your machine (e.g., laptop).
 
-# Create your local repository
+# 6. Create your local repository
 
 You now need to create a Git repository on your machine to save (commit) your work and get material from me.
 
@@ -101,7 +88,7 @@ Open Git Extensions (it should already be open).
 6. In the dialog box, for name, enter: `professor`; for URL, enter: `https://github.com/lawrancej/comp310.git`. Click Save changes. Click Yes, and follow any prompts. Close the Remote repositories dialog box.
 7. Click the Down arrow button to pull from the professor. You don't need to play with any of the options, just click Pull.
 
-# Create your remote repository
+# 7. Create your remote repository
 
 Now create a place to submit your work, called a remote repository. **You need to ensure that your remote repository is private, otherwise I cannot post feedback to you for legal reasons (FERPA).** 
 
@@ -121,7 +108,7 @@ Now create a place to submit your work, called a remote repository. **You need t
 
 4.  When Github confirms that you are a student, make the repository you created private by clicking on the wrench and screwdriver icon (it's **Settings**, not **Account settings**) and scroll down to the **Danger Zone** and click **Make private**. 
 
-# Push to your remote repository
+# 8. Push to your remote repository
 
 So far, you have created a remote repository, but haven't submitted (pushed) anything to it yet.
 
@@ -141,7 +128,7 @@ Under Quick Setup, select and copy the SSH URL to the clipboard (It should look 
 4. Click the Up arrow (Push). Click Push.
 5. Reload your Bitbucket or Github repository page. If all went well, you will see **COMP310: Data Structures**. 
 
-# Share your repository with me and watch mine
+# 9. Share your repository with me and watch mine
 
 Right now, nobody but you can see your remote repository; you need to add me as a collaborator so that I can see the work you submit. Also, I will make updates frequently during the semester, and I won't email you when I make changes, so you'll want to watch my repository to receive change notifications.
 
@@ -161,7 +148,7 @@ Right now, nobody but you can see your remote repository; you need to add me as 
 
 Now we can see each other's stuff.
 
-# Practice work submission
+# 10. Practice work submission
 
 Submit work to wrap this up.
 

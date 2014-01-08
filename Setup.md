@@ -82,7 +82,7 @@ Open Git Extensions (it should already be open).
 3. In the file selector, click your name, click Make New Folder and type in `comp310`. Click OK.
 4. Leave the repository type alone, it should be Personal Repository as selected by default. Click Initialize.
 5. Click Repository -> Remote repositories...
-6. In the dialog box, for name, enter: `professor`; for URL, enter: `https://github.com/lawrancej/comp310.git`. Click Save changes. Click Yes, and follow any prompts. Close the Remote repositories dialog box.
+6. In the dialog box, for name, enter: `upstream`; for URL, enter: `https://github.com/lawrancej/comp310.git`. Click Save changes. Click Yes, and follow any prompts. Close the Remote repositories dialog box.
 7. Click the Down arrow button to pull from the professor. You don't need to play with any of the options, just click Pull.
 
 # 7. Create your remote repository
@@ -152,7 +152,7 @@ Submit work to wrap this up.
 5. Select the New Text Document.txt (or whatever you renamed it to out of habit), and click the single down arrow Stage button.
 6. Type in a commit message (e.g., My first commit), and click Commit & push.
 7. Just say Yes to anything it asks about.
-8. At some point you may see a push dialog box. The default remote is `origin`, and you should push to `origin`, not to `professor`. Click Push.
+8. At some point you may see a push dialog box. The default remote is `origin`, and you should push to `origin`, not to `upstream`. Click Push.
 8. If all went well, you will see the commit on Bitbucket or Github when you reload it.
 
 # References

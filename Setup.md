@@ -1,8 +1,6 @@
 # Course setup overview (Windows)
 
-These instructions guide Windows users through installing all necessary course software and setting up a course repository for submitting work.
-
-You need a good internet connection and an hour or two to complete these instructions. All errors and omissions are mine. Feel free to share your improvements to these instructions (pull requests are welcome).
+These instructions guide Windows users through installing all necessary course software and setting up a course repository for submitting work. You need a good internet connection and an hour or two to complete these instructions. All errors and omissions are mine. Feel free to share your improvements to these instructions (pull requests are welcome).
 
 # 1. Install a package manager
 
@@ -10,11 +8,11 @@ You need to download [Chocolatey](http://chocolatey.org/) by copying the followi
 
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
 
-If you are using Windows 7 or earlier, you will also need to install [PowerShell 3](http://www.microsoft.com/en-us/download/details.aspx?id=34595) before you run Chocolatey, as Chocolatey depends on it.
+If you are using Windows 7 or earlier, you may need to install [PowerShell 3](http://www.microsoft.com/en-us/download/details.aspx?id=34595) before you run Chocolatey.
 
 # 2. Install packages
 
-In this course, you are welcome to choose among Java, C++ or Python for your projects. I intend to use each of these languages at least once in class, so you might as well install these packages now.
+You are welcome to choose among Java, C++ or Python for your coursework. I intend to use each of these languages during class, so you might as well install all necessary packages now.
 
 * Git for team collaboration and work submission.
 * Git Extensions, a front-end for Git.
@@ -25,17 +23,18 @@ In this course, you are welcome to choose among Java, C++ or Python for your pro
 * Pip, a python package installer.
 * Gradle, a nice Java build tool / package installer.
 
-Use Chocolatey to install software.
+Use Chocolatey to install software, as described below.
 
-1. Open cmd.exe and copy/paste the following:
+1. Open cmd.exe
+2. Copy/paste the following into the command prompt:
 
         cinst Sudo
 
-2. Close the command prompt, and reopen it. Copy/paste the following:
+3. Close the command prompt, and reopen it. Copy/paste the following:
 
-        sudo cinst git gitextensions cmake kdiff3 python pip gradle nuget notepadplusplus
+        sudo cinst ChocolateyGUI git gitextensions cmake kdiff3 python pip gradle notepadplusplus
 
-3. If you are a CS major, you probably have Java and the JDK installed already. If not:
+4. If you are a CS major, you probably have Java and the JDK installed already. If not:
 
         sudo cinst javaruntime java.jdk
 
@@ -56,7 +55,7 @@ I don't use Blackboard or email for work submission. Instead, use git to push wo
 
 # 5. Setup SSH keys
 
-You don't want to type in your password every time you submit work, do you? Of course not. You will need to generate an SSH public/private kepair ([what's that?](https://www.youtube.com/watch?v=3QnD2c4Xovk)), and share it with your project host.
+You don't want to type in your password every time you submit work, do you? Of course not. You will need to generate an SSH public/private kepair ([what's that?](https://www.youtube.com/watch?v=3QnD2c4Xovk)), and share the public key with your project host.
 
 ## Generate your SSH public/private keypair
 

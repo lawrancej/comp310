@@ -32,7 +32,7 @@ Use Chocolatey to install software, as described below.
 
 3. Close the command prompt, and reopen it. Copy/paste the following:
 
-        sudo cinst ChocolateyGUI git gitextensions cmake kdiff3 python pip gradle notepadplusplus
+        sudo cinst ChocolateyGUI git eclipse-standard-kepler gitextensions cmake kdiff3 python pip gradle notepadplusplus
 
 4. If you are a CS major, you probably have Java and the JDK installed already. If not:
 

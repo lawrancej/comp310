@@ -12,3 +12,23 @@ Agendas
 * [January 13](agendas/01-13.md) Load the workspace into Eclipse, More data structure examples.
 * [January 15](agendas/01-15.md) Big O and trees.
 * [January 16](agendas/01-16.md) Lab 1.
+
+Common Eclipse errors (and their solutions)
+-------------------------------------------
+
+### This may solve most problems.
+
+Try opening up Git Extensions, go to Git Bash, and then do:
+
+	cd workspace/Examples
+	gradle eclipse
+
+Then, click on the project and hit F5 (or right click and Refresh).
+
+### Unsupported major.minor version 51.0 Error
+
+Click on the project, then do:
+
+    Project -> Properties -> Java Compiler
+
+Click Enable project specific settings, click OK and try again.

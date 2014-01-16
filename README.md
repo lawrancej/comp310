@@ -10,3 +10,5 @@ Agendas
 * [January 9](Setup.md) Set up course software and git repositories.
 * [January 10](agendas/01-10.md) Add Gradle to your PATH, Abstract Data Types (ADTs), Introducing big O notation.
 * [January 13](agendas/01-13.md) Load the workspace into Eclipse, More data structure examples.
+* [January 15](agendas/01-15.md) Big O and trees.
+* [January 16](agendas/01-16.md) Lab 1.

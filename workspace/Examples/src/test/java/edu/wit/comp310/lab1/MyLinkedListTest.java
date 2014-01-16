@@ -9,20 +9,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MyLinkedListTest {
-	List<String> javaLinkedList;
-	List<String> studentLinkedList;
+	LinkedList<String> javaLinkedList;
+	MyLinkedList<String> studentLinkedList;
 
 	@Before
 	public void setUp() throws Exception {
 		javaLinkedList = new LinkedList<String>();
-		studentLinkedList = new LinkedList<String>();
+		studentLinkedList = new MyLinkedList<String>();
 	}
 
 	@Test
 	public void testAddValueType() {
-		javaLinkedList.add("Hello");
-		studentLinkedList.add("Hello");
-		fail("Not yet implemented");
+		String hello = "Hello";
+		javaLinkedList.add(hello);
+		studentLinkedList.add(hello);
+		assertEquals(
+				javaLinkedList.get(
+						javaLinkedList.indexOf(hello)),
+				studentLinkedList.get(
+						studentLinkedList.indexOf(hello)));
 	}
 
 	@Test

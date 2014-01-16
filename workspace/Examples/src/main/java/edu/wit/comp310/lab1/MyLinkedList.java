@@ -9,6 +9,10 @@ import java.util.ListIterator;
  * Roll your own Singly-linked list.
  * 
  * This means that we implement ourselves.
+ * 
+ * The List interface is described here:
+ * 
+ * @see http://docs.oracle.com/javase/7/docs/api/java/util/List.html
  *
  */
 public class MyLinkedList<ValueType> implements List<ValueType> {

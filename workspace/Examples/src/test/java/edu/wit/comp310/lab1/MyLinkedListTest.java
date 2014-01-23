@@ -24,7 +24,7 @@ public class MyLinkedListTest extends TestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		studentLinkedList = new LinkedList<String>();
+		studentLinkedList = new MyLinkedList<String>();
 	}
 
 	@Test

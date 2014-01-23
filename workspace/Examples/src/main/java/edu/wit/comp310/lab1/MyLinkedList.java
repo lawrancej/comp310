@@ -16,7 +16,11 @@ import java.util.ListIterator;
  *
  */
 public class MyLinkedList<ValueType> implements List<ValueType> {
-
+	Node<ValueType> first;
+	public static class Node<T> {
+		T data;
+		Node<T> next;
+	}
 	@Override
 	public boolean add(ValueType arg0) {
 		// TODO Auto-generated method stub
@@ -26,7 +30,8 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 	@Override
 	public void add(int arg0, ValueType arg1) {
 		// TODO Auto-generated method stub
-		
+//		Node<T> newNode = new Node("hello", first);
+//		first = newNode;
 	}
 
 	@Override

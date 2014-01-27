@@ -268,7 +268,7 @@ public class MyLinkedListTest extends TestCase {
 	public void testSize() {
 		studentLinkedList.clear();
 		assertThat(studentLinkedList.size(), is(0));
-		studentLinkedList.add("");
+		studentLinkedList.add(null);
 		assertThat(studentLinkedList.size(), is(1));
 	}
 

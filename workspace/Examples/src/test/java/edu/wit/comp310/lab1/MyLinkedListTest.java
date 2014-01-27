@@ -261,7 +261,7 @@ public class MyLinkedListTest extends TestCase {
 
 	@Test
 	public void testSet() {
-		fail("Not yet implemented");
+		fail("Not implemented yet");
 	}
 
 	@Test

@@ -261,7 +261,12 @@ public class MyLinkedListTest extends TestCase {
 
 	@Test
 	public void testSet() {
-		fail("Not implemented yet");
+		studentLinkedList.clear();
+		studentLinkedList.add("We're under the same skies");
+		studentLinkedList.add("And the nights");
+		studentLinkedList.add("As empty for me, as for you");
+		studentLinkedList.set(1, "If you feel");
+		assertThat(studentLinkedList.get(1), is("If you feel"));
 	}
 
 	@Test
@@ -274,6 +279,18 @@ public class MyLinkedListTest extends TestCase {
 
 	@Test
 	public void testSubList() {
-		fail("Not yet implemented");
+		studentLinkedList.clear();
+		studentLinkedList.add("You can't wait till morning");
+		for (int i = 0; i < 7; i++) {
+			studentLinkedList.add("Kiss the rain");
+		}
+		studentLinkedList.add("Hello");
+		for (int i = 0; i < 3; i++) {
+			studentLinkedList.add("Can you hear me?");
+		}
+		List<String> list = studentLinkedList.subList(1, 3);
+		assertThat(list, hasItem("Kiss the rain"));
+		assertThat(list, not(hasItem("Hello")));
+		assertThat(list, not(hasItem("Can you hear me?")));
 	}
 }

@@ -29,9 +29,11 @@ public class MyLinkedListTest extends TestCase {
 
 	@Test
 	public void testAddValueType() {
+		studentLinkedList.clear();
 		String message = "Hello";
 		studentLinkedList.add(message);
-		assertThat(studentLinkedList, hasItem(message));
+		assertThat(studentLinkedList.size(), is(1));
+		assertThat(studentLinkedList.get(0), is(message));
 	}
 
 	@Test

@@ -17,18 +17,40 @@ import java.util.ListIterator;
  */
 public class MyLinkedList<ValueType> implements List<ValueType> {
 	Node<ValueType> first;
+	Node<ValueType> last;
+	int size = 0;
 	public static class Node<T> {
 		T data;
 		Node<T> next;
 	}
+	private void loopingExample() {
+		// for (initialization; continueCondition; updateRule)
+		// for (int i = 0; i < size(); i++)
+		int index = 5;
+		int i = 0;
+		Node<ValueType> current;
+		for (current = first;
+				current != null && i < index - 1;
+				current = current.next, i++);
+		
+	}
+	
 	@Override
 	public boolean add(ValueType arg0) {
-		// TODO Auto-generated method stub
+		if (this.isEmpty()) {
+			Node<ValueType> newNode = new Node<ValueType>();
+			newNode.data = arg0;
+			first = newNode;
+			last = newNode;
+		}
 		return false;
 	}
 
 	@Override
-	public void add(int arg0, ValueType arg1) {
+	public void add(int index, ValueType arg1) {
+		if (index < 0 || index > size()) {
+			throw new IndexOutOfBoundsException("WTF?!?");
+		}
 		// TODO Auto-generated method stub
 //		Node<T> newNode = new Node("hello", first);
 //		first = newNode;
@@ -79,13 +101,29 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return false;
+		return size == 0;
 	}
 
 	@Override
 	public Iterator<ValueType> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterator<ValueType>() {
+			Node<ValueType> current = first;
+			@Override
+			public boolean hasNext() {
+				// is there an element after current?
+				return false;
+			}
+			@Override
+			public ValueType next() {
+				// Advance current to next
+				// return current's data
+				return null;
+			}
+			@Override
+			public void remove() {
+				// Don't bother, please
+			}
+		};
 	}
 
 	@Override
@@ -138,8 +176,7 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override

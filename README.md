@@ -12,6 +12,7 @@ Agendas
 * [January 13](agendas/01-13.md) Load the workspace into Eclipse, More data structure examples.
 * [January 15](agendas/01-15.md) Big O and trees.
 * [January 16](agendas/01-16.md) Lab 1.
+* [January 30](agendas/01-30.md) Lab 2.
 
 Common Eclipse errors (and their solutions)
 -------------------------------------------

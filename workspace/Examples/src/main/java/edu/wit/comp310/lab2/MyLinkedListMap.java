@@ -1,13 +1,14 @@
 package edu.wit.comp310.lab2;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import edu.wit.comp310.lab1.MyLinkedList;
 
 public class MyLinkedListMap<Key,Value> implements Map<Key,Value>{
-	MyLinkedList<Pair<Key, Value>> list = new MyLinkedList<Pair<Key, Value>>();
+	List<Pair<Key, Value>> list = new MyLinkedList<Pair<Key, Value>>();
 
 	@Override
 	public void clear() {

@@ -1,7 +1,7 @@
 COMP310: Data Structures
 ========================
 
-This course will cover all major [data structures](http://www.cs.usfca.edu/~galles/visualization/Algorithms.html) and their [relevance to programming](http://cstheory.stackexchange.com/questions/19759/core-algorithms-deployed/19773#19773). If you're looking for a textbook, check out [Open Data Structures](http://opendatastructures.org/ods-java/).
+This course will cover all major [data structures](http://www.cs.usfca.edu/~galles/visualization/Algorithms.html), their [space/time complexity](http://bigocheatsheet.com/), and their [relevance to programming](http://cstheory.stackexchange.com/questions/19759/core-algorithms-deployed/19773#19773). If you're looking for a textbook, check out [Open Data Structures](http://opendatastructures.org/ods-java/).
 
 Agendas
 -------
@@ -13,6 +13,7 @@ Agendas
 * [January 15](agendas/01-15.md) Big O and trees.
 * [January 16](agendas/01-16.md) Lab 1.
 * [January 30](agendas/01-30.md) Lab 2.
+* [January 31](agendas/01-31.md) Binary search trees, and balancing them (AVL trees).
 
 Common Eclipse errors (and their solutions)
 -------------------------------------------

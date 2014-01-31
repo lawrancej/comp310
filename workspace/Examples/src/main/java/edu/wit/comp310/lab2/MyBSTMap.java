@@ -4,11 +4,14 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-public class MyBSTMap<Key,Value> implements Map<Key, Value> {
+public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Value> {
+	private BinaryTreeNode<Pair<Key,Value>> root;
 	private static class BinaryTreeNode<T> {
 		T data;
+		BinaryTreeNode<T> parent;
 		BinaryTreeNode<T> left;
 		BinaryTreeNode<T> right;
+		int subtreeHeight = 1;
 	}
 
 	@Override

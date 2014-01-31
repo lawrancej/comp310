@@ -7,13 +7,12 @@ import java.util.Set;
 
 import edu.wit.comp310.lab1.MyLinkedList;
 
-public class MyLinkedListMap<Key,Value> implements Map<Key,Value>{
+public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<Key,Value>{
 	List<Pair<Key, Value>> list = new MyLinkedList<Pair<Key, Value>>();
 
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

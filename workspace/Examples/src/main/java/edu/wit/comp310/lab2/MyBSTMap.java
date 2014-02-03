@@ -18,7 +18,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		BinaryTreeNode<T> left;
 		BinaryTreeNode<T> right;
 		int subtreeHeight = 1;
-		public void accept(Visitor v) {
+		public void accept(Visitor<T> v) {
 			v.visit(this);
 		}
 	}

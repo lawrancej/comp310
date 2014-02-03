@@ -2,18 +2,31 @@ package edu.wit.comp310.lab2;
 
 import static org.junit.Assert.*;
 
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class MyMapTest {
-
+	Map<String, String> map;
 	@Before
 	public void setUp() throws Exception {
+		map = new MyLinkedListMap<String,String>();
 	}
 
 	@Test
 	public void testClear() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("Michael Jackson", "Thriller");
+		map.put("Michael Jackson", "Beat it");
+		map.put("Michael Jackson", "Bad");
+		assertFalse(map.isEmpty());
+		assertThat(map.size(), is(3));
+		map.clear();
+		assertTrue(map.isEmpty());
+		assertThat(map.size(), is(0));
 	}
 
 	@Test

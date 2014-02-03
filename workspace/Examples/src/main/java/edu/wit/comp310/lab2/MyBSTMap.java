@@ -4,6 +4,12 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Implement a dictionary using AVL trees.
+ *
+ * @param <Key>
+ * @param <Value>
+ */
 public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Value> {
 	private BinaryTreeNode<Pair<Key,Value>> root;
 	private static class BinaryTreeNode<T> {
@@ -12,6 +18,12 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		BinaryTreeNode<T> left;
 		BinaryTreeNode<T> right;
 		int subtreeHeight = 1;
+		public void accept(Visitor v) {
+			v.visit(this);
+		}
+	}
+	public interface Visitor<T> {
+		public void visit(BinaryTreeNode<T> node);
 	}
 
 	@Override

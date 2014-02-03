@@ -12,12 +12,16 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		list.clear();
 	}
 
 	@Override
-	public boolean containsKey(Object arg0) {
-		// TODO Auto-generated method stub
+	public boolean containsKey(Object key) {
+		for (Pair<Key,Value> item : list) {
+			if (item.key.equals(key)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -72,7 +76,7 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
-		return 0;
+		return list.size();
 	}
 
 	@Override

@@ -3,9 +3,11 @@ package edu.wit.comp310.lab2;
 import static org.junit.Assert.*;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -31,17 +33,40 @@ public class MyMapTest {
 
 	@Test
 	public void testContainsKey() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("Coldplay", "Clocks");
+		map.put("Coldplay", "Fix You");
+		map.put("Coldplay", "Life in Technicolor");
+		map.put("Coldplay", "Viva la Vida");
+		assertTrue(map.containsKey("Coldplay"));
+		assertFalse(map.containsKey("Clocks"));
+		assertFalse(map.containsKey("Michael Jackson"));
 	}
 
 	@Test
 	public void testContainsValue() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("U2", "Beautiful Day");
+		map.put("U2", "Still Haven't Found What I'm Looking For");
+		map.put("U2", "Vertigo");
+		map.put("U2", "Walk On");
+		map.put("U2", "Where The Streets Have No Name");
+		assertTrue(map.containsValue("Beautiful Day"));
+		assertFalse(map.containsValue("U2"));
+		assertFalse(map.containsValue("Lorde"));
 	}
 
 	@Test
 	public void testEntrySet() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("Lorde", "400 Lux");
+		map.put("Lorde", "Ribs");
+		map.put("Lorde", "Royals");
+		for (Entry<String, String> e : map.entrySet()) {
+			assertTrue(e.getKey().equals("Lorde"));
+			assertFalse(e.getKey().equals("U2"));
+//			assertThat(e.getValue(), is(anyOf("400 Lux", "Ribs", "Royals")));
+		}
 	}
 
 	@Test

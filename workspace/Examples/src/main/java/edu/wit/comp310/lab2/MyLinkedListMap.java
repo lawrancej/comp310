@@ -1,6 +1,7 @@
 package edu.wit.comp310.lab2;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,7 +34,8 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 
 	@Override
 	public Set<java.util.Map.Entry<Key, Value>> entrySet() {
-		// TODO Auto-generated method stub
+		Set<Pair<Key, Value>> result = new HashSet<Pair<Key, Value>>();
+		// populate the set with all the entries in the map
 		return null;
 	}
 
@@ -51,7 +53,7 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 
 	@Override
 	public Set<Key> keySet() {
-		// TODO Auto-generated method stub
+		// Return all the keys in your map.
 		return null;
 	}
 

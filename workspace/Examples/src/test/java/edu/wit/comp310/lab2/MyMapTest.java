@@ -2,111 +2,147 @@ package edu.wit.comp310.lab2;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+/**
+ * Test [0] is MyLinkedListMap (you implement)
+ * Test [1] is MyBSTMap (you implement)
+ * Test [2] is HashMap (this already exists)
+ * 
+ * The test code is the same for all three classes.
+ *
+ */
+@RunWith(Parameterized.class)
 public class MyMapTest {
 	Map<String, String> map;
-	@Before
-	public void setUp() throws Exception {
-		map = new MyLinkedListMap<String,String>();
+	
+	@Parameters
+	public static List<Object[]> data() {
+		return Arrays.asList(new Object[] {new MyLinkedListMap<String, String>()},
+				new Object[]{new MyBSTMap<String, String>()},
+				new Object[] {new HashMap<String, String>()});
+	}
+	
+	public MyMapTest(Map<String, String> map) {
+		this.map = map;
 	}
 
 	@Test
 	public void testClear() {
 		map.clear();
-		map.put("Michael Jackson", "Thriller");
-		map.put("Michael Jackson", "Beat it");
-		map.put("Michael Jackson", "Bad");
-		assertFalse(map.isEmpty());
+		map.put("Thriller","Michael Jackson");
+		map.put("Beat it","Michael Jackson");
+		map.put("Bad","Michael Jackson");
 		assertThat(map.size(), is(3));
 		map.clear();
-		assertTrue(map.isEmpty());
 		assertThat(map.size(), is(0));
 	}
 
 	@Test
 	public void testContainsKey() {
 		map.clear();
-		map.put("Coldplay", "Clocks");
-		map.put("Coldplay", "Fix You");
-		map.put("Coldplay", "Life in Technicolor");
-		map.put("Coldplay", "Viva la Vida");
-		assertTrue(map.containsKey("Coldplay"));
-		assertFalse(map.containsKey("Clocks"));
+		map.put("Clocks","Coldplay");
+		map.put("Fix You","Coldplay");
+		map.put("Life in Technicolor","Coldplay");
+		map.put("Viva la Vida","Coldplay");
+		assertTrue(map.containsKey("Clocks"));
+		assertFalse(map.containsKey("Coldplay"));
 		assertFalse(map.containsKey("Michael Jackson"));
 	}
 
 	@Test
 	public void testContainsValue() {
 		map.clear();
-		map.put("U2", "Beautiful Day");
-		map.put("U2", "Still Haven't Found What I'm Looking For");
-		map.put("U2", "Vertigo");
-		map.put("U2", "Walk On");
-		map.put("U2", "Where The Streets Have No Name");
-		assertTrue(map.containsValue("Beautiful Day"));
-		assertFalse(map.containsValue("U2"));
-		assertFalse(map.containsValue("Lorde"));
+		map.put("Beautiful Day","U2");
+		map.put("Still Haven't Found What I'm Looking For","U2");
+		map.put("Vertigo","U2");
+		map.put("Walk On","U2");
+		map.put("Where The Streets Have No Name","U2");
+		assertFalse(map.containsValue("Beautiful Day"));
+		assertTrue(map.containsValue("U2"));
 	}
 
 	@Test
 	public void testEntrySet() {
 		map.clear();
-		map.put("Lorde", "400 Lux");
-		map.put("Lorde", "Ribs");
-		map.put("Lorde", "Royals");
+		map.put("400 Lux","Lorde");
+		map.put("Ribs","Lorde");
+		map.put("Royals","Lorde");
 		for (Entry<String, String> e : map.entrySet()) {
-			assertTrue(e.getKey().equals("Lorde"));
-			assertFalse(e.getKey().equals("U2"));
-//			assertThat(e.getValue(), is(anyOf("400 Lux", "Ribs", "Royals")));
+			assertTrue(e.getValue().equals("Lorde"));
+			assertFalse(e.getValue().equals("U2"));
+			assertThat(e.getKey(), anyOf(is("400 Lux"), is("Ribs"), is("Royals")));
 		}
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("All These Things That I Have Done","Killers");
+		map.put("Human","Killers");
+		map.put("Evil","Interpol");
+		assertThat(map.get("Evil"), is("Interpol"));
+		assertThat(map.get("Human"), is("Killers"));
 	}
 
 	@Test
 	public void testIsEmpty() {
-		fail("Not yet implemented");
+		map.put("Sounds of Silence", "Simon & Garfunkel");
+		assertFalse(map.isEmpty());
+		map.clear();
+		assertTrue(map.isEmpty());
 	}
 
 	@Test
 	public void testKeySet() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPut() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("Dreams", "Cranberries");
+		map.put("Sweet Dreams", "Eurythmics");
+		assertThat(map.keySet(), hasItems("Dreams","Sweet Dreams"));
+		assertThat(map.keySet(), not(hasItems("Cranberries", "Eurythmics")));
 	}
 
 	@Test
 	public void testPutAll() {
-		fail("Not yet implemented");
+		map.clear();
+		Map<String, String> other = new HashMap<String, String>();
+		other.put("1812 Overture", "Tchaikovsky");
+		other.put("Piano Concerto 1", "Tchaikovsky");
+		other.put("The Nutcracker", "Tchaikovsky");
+		map.putAll(other);
+		assertTrue(map.containsKey("1812 Overture"));
+		assertTrue(map.containsKey("Piano Concerto 1"));
+		assertTrue(map.containsKey("The Nutcracker"));
 	}
 
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSize() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("Hello, Goodbye", "The Beatles");
+		map.put("Imagine", "John Lennon");
+		assertThat(map.remove("Hello, Goodbye"), is("The Beatles"));
+		assertThat(map.get("Imagine"), is("John Lennon"));
+		assertNull(map.get("Hello, Goodbye"));
 	}
 
 	@Test
 	public void testValues() {
-		fail("Not yet implemented");
+		map.clear();
+		map.put("Claire De Lune", "Debussy");
+		map.put("Golliwog's Cakewalk", "Debussy");
+		assertThat(map.values(), hasItems("Debussy"));
+		assertThat(map.values(), not(hasItems("Tchaikovsky")));
 	}
-
 }

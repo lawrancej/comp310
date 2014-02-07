@@ -34,9 +34,11 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 
 	@Override
 	public Set<java.util.Map.Entry<Key, Value>> entrySet() {
-		Set<Pair<Key, Value>> result = new HashSet<Pair<Key, Value>>();
-		// populate the set with all the entries in the map
-		return null;
+		Set<java.util.Map.Entry<Key, Value>> result = new HashSet<java.util.Map.Entry<Key, Value>>();
+		for (Pair<Key, Value> item : list) {
+			result.add(item);
+		}
+		return result;
 	}
 
 	@Override

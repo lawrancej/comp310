@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
+
 /**
  * Implement a dictionary using AVL trees.
  *
@@ -153,7 +155,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 
 	@Override
 	public Set<java.util.Map.Entry<Key, Value>> entrySet() {
-		Set<Pair<Key, Value>> set = new HashSet<Pair<Key, Value>>();
+		Set<java.util.Map.Entry<Key, Value>> result = new HashSet<java.util.Map.Entry<Key, Value>>();
 		// populate the set with everything in the the tree.
 		return null;
 	}

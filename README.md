@@ -14,6 +14,7 @@ Agendas
 * [January 16](agendas/01-16.md) Lab 1.
 * [January 30](agendas/01-30.md) Lab 2.
 * [January 31](agendas/01-31.md) Binary search trees, and balancing them (AVL trees).
+* [February 6](agendas/02-06.md) Tree traversal, visitor pattern, searching.
 
 Common Eclipse errors (and their solutions)
 -------------------------------------------

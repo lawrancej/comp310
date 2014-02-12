@@ -25,4 +25,8 @@ public class Pair<Key extends Comparable<Key>,Value> implements Comparable<Pair<
 	public Value setValue(Value value) {
 		return this.value = value;
 	}
+	@Override
+	public String toString() {
+		return String.format("%s => %s", key.toString(), value.toString());
+	}
 }

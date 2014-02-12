@@ -48,17 +48,17 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		example.accept(c);
 		// System.out.println(c.count);
 		
-//		Searcher searcher = new Searcher("Luke");
-//		example.accept(searcher);
-//		System.out.println(searcher.found); // print true, please!
+		Searcher searcher = new Searcher("Luke");
+		example.accept(searcher);
+		System.out.println(searcher.found); // print true, please!
 	}
-	public static class Debugger<K extends Comparable<K>,V> implements Visitor<Pair<K,V>> {	
+	public static class Debugger<T extends Comparable<T>> implements Visitor<T> {	
 		int indent = 0;
 		@Override
-		public void visit(BinaryTreeNode<Pair<K, V>> node) {
+		public void visit(BinaryTreeNode<T> node) {
 			for (int i = 0; i < indent; i++)
 				System.out.print(" ");
-			System.out.println(String.format("%s => %s", node.data.key.toString(), node.data.value.toString()));
+			System.out.println(node.data);
 			if (node.left != null) {
 				indent++;
 				node.left.accept(this);
@@ -73,19 +73,19 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		}
 	}
 	// Tweaked searcher to work on comparable things
-	public static class Searcher<K extends Comparable<K>,V> implements Visitor<Pair<K,V>> {
+	public static class Searcher<T extends Comparable<T>> implements Visitor<T> {
 		// I just changed this from a String to a Pair
-		Pair<K,V> needle;
+		T needle;
 		
 		// Track the parent of the node to insert at
-		BinaryTreeNode<Pair<K,V>> parent;
+		BinaryTreeNode<T> parent;
 		// The original version just had a flag for found
 		boolean found = false;
-		public Searcher(Pair<K,V> needle) {
+		public Searcher(T needle) {
 			this.needle = needle;
 		}
 		@Override
-		public void visit(BinaryTreeNode<Pair<K,V>> node) {
+		public void visit(BinaryTreeNode<T> node) {
 			// So, every time we visit, we should set the parent
 			// (the node where we want to do the insertion)
 			// to be the current node.
@@ -199,7 +199,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 	public Value get(Object key) {
 		// The object is a key, not an entry
 		Pair<Key, Value> entry = new Pair<Key,Value>((Key)key, null);
-		Searcher<Key,Value> searcher = new Searcher<Key,Value>(entry);
+		Searcher<Pair<Key,Value>> searcher = new Searcher<Pair<Key,Value>>(entry);
 		root.accept(searcher);
 		if (searcher.found) return searcher.parent.data.value;
 		return null;
@@ -240,7 +240,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		} else {
 			// Otherwise, we've got a nonempty tree
 			// So, find the place to make the insertion
-			Searcher<Key,Value> searcher = new Searcher<Key,Value>(entry);
+			Searcher<Pair<Key,Value>> searcher = new Searcher<Pair<Key,Value>>(entry);
 			// Find the parent node relevant to our interests
 			root.accept(searcher);
 			

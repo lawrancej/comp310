@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-
-
 /**
  * Implement a dictionary using AVL trees.
  *
@@ -15,11 +13,15 @@ import java.util.Set;
  */
 public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Value> {
 	private BinaryTreeNode<Pair<Key,Value>> root;
+	// There we go... Let's keep track of size like we did in linked list
+	int size = 0;
 	private static class BinaryTreeNode<T> {
 		T data;
 		BinaryTreeNode<T> parent;
 		BinaryTreeNode<T> left;
 		BinaryTreeNode<T> right;
+		// This is the height of the tree rooted at this node,
+		// Not the size of the tree
 		int subtreeHeight = 1;
 		public void accept(Visitor<T> v) {
 			v.visit(this);
@@ -46,18 +48,48 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		example.accept(c);
 		// System.out.println(c.count);
 		
-		Searcher searcher = new Searcher("Luke");
-		example.accept(searcher);
-		System.out.println(searcher.found); // print true, please!
+//		Searcher searcher = new Searcher("Luke");
+//		example.accept(searcher);
+//		System.out.println(searcher.found); // print true, please!
 	}
-	public static class Searcher implements Visitor<String> {
-		String needle;
+	public static class Debugger<K extends Comparable<K>,V> implements Visitor<Pair<K,V>> {	
+		int indent = 0;
+		@Override
+		public void visit(BinaryTreeNode<Pair<K, V>> node) {
+			for (int i = 0; i < indent; i++)
+				System.out.print(" ");
+			System.out.println(String.format("%s => %s", node.data.key.toString(), node.data.value.toString()));
+			if (node.left != null) {
+				indent++;
+				node.left.accept(this);
+				indent--;
+			}
+			if (node.right != null) {
+				indent++;
+				node.right.accept(this);
+				indent--;
+			}
+			
+		}
+	}
+	// Tweaked searcher to work on comparable things
+	public static class Searcher<K extends Comparable<K>,V> implements Visitor<Pair<K,V>> {
+		// I just changed this from a String to a Pair
+		Pair<K,V> needle;
+		
+		// Track the parent of the node to insert at
+		BinaryTreeNode<Pair<K,V>> parent;
+		// The original version just had a flag for found
 		boolean found = false;
-		public Searcher(String needle) {
+		public Searcher(Pair<K,V> needle) {
 			this.needle = needle;
 		}
 		@Override
-		public void visit(BinaryTreeNode<String> node) {
+		public void visit(BinaryTreeNode<Pair<K,V>> node) {
+			// So, every time we visit, we should set the parent
+			// (the node where we want to do the insertion)
+			// to be the current node.
+			parent = node;
 			int result = node.data.compareTo(needle);
 			if (result < 0) { // data < needle
 				// Visit the right side
@@ -135,10 +167,13 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		}
 	}
 
+	// So, This is the clear method
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
+		// Garbage collection, FTW.
+		root = null;
+		// A little bookkeeping
+		size = 0;
 	}
 
 	@Override
@@ -161,8 +196,12 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 	}
 
 	@Override
-	public Value get(Object arg0) {
-		// TODO Auto-generated method stub
+	public Value get(Object key) {
+		// The object is a key, not an entry
+		Pair<Key, Value> entry = new Pair<Key,Value>((Key)key, null);
+		Searcher<Key,Value> searcher = new Searcher<Key,Value>(entry);
+		root.accept(searcher);
+		if (searcher.found) return searcher.parent.data.value;
 		return null;
 	}
 
@@ -178,10 +217,61 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		// populate the set with every key in the the tree.
 		return null;
 	}
-
+	// At this point, the rebalancing is left to do
+	// Also, I wouldn't be surprised if there were bugs in here
 	@Override
-	public Value put(Key arg0, Value arg1) {
-		// TODO Auto-generated method stub
+	public Value put(Key key, Value value) {
+		// Let's think about what we do in put.
+		
+		// Box up the key/value pair into a Pair object
+		Pair<Key,Value> entry = new Pair<Key,Value>(key, value);
+		// Make a new node
+		// Usually that's what we want to do
+		BinaryTreeNode<Pair<Key,Value>> newNode = new BinaryTreeNode<Pair<Key,Value>>();
+		// Set the data to the entry (pair)
+		newNode.data = entry;
+		
+		// We've got two cases
+		if (root == null) {
+			// if we have an empty tree, it's easy
+			root = newNode;
+			// Some bookkeeping
+			size++;
+		} else {
+			// Otherwise, we've got a nonempty tree
+			// So, find the place to make the insertion
+			Searcher<Key,Value> searcher = new Searcher<Key,Value>(entry);
+			// Find the parent node relevant to our interests
+			root.accept(searcher);
+			
+//			System.out.println("Before");
+
+//			root.accept(new Debugger<Key, Value>());
+			// By this point, searcher ought to set the parent node
+			// Insert node into tree
+			if (searcher.parent.data.compareTo(entry) < 0) {
+				searcher.parent.right = newNode;
+				newNode.parent = searcher.parent;
+				size++;
+			} else if (searcher.parent.data.compareTo(entry) > 0) {
+				searcher.parent.left = newNode;
+				newNode.parent = searcher.parent;
+				size++;
+			} else {
+				// If we're here the node data is equal to the entry's key
+				// Here, we don't want to create a new node, but we've got one anyway
+				// So, let's just update the value
+				Value temp = searcher.parent.data.value;
+				searcher.parent.data.value = value;
+				// we got return the previous value
+				// and we won't need to rebalance here
+				// since the tree shape hasn't changed.
+				return temp;
+			}
+			// We still need to REBALANCE if we got here :-)
+			// Rebalance here (exercise for reader) ;-)
+		}
+		
 		return null;
 	}
 
@@ -197,10 +287,10 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		return null;
 	}
 
+	// This is a decent size method
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 
 	@Override

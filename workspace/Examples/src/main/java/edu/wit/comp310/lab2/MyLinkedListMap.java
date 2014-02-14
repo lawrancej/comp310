@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+//import java.util.*; // :-(
 import java.util.Set;
 
 import edu.wit.comp310.lab1.MyLinkedList;
@@ -33,7 +34,7 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<Key, Value>> entrySet() {
+	public java.util.Set<java.util.Map.Entry<Key, Value>> entrySet() {
 		Set<java.util.Map.Entry<Key, Value>> result = new HashSet<java.util.Map.Entry<Key, Value>>();
 		for (Pair<Key, Value> item : list) {
 			result.add(item);
@@ -60,15 +61,26 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 	}
 
 	@Override
-	public Value put(Key arg0, Value arg1) {
-		// TODO Auto-generated method stub
+	public Value put(Key key, Value value) {
+		// First, loop through the list
+		// to see if the key is already in the list
+		for (Pair<Key, Value> item : list) {
+			// We encountered the previous value
+			if (item.key.equals(key)) {
+				Value temp = item.value;
+				item.value = value;
+				return temp;
+			}
+		}
+		list.add(new Pair<Key, Value>(key,value));
 		return null;
 	}
 
 	@Override
-	public void putAll(Map<? extends Key, ? extends Value> arg0) {
-		// TODO Auto-generated method stub
-		
+	public void putAll(Map<? extends Key, ? extends Value> map) {
+		for(java.util.Map.Entry<? extends Key, ? extends Value> item : map.entrySet()) {
+			put(item.getKey(), item.getValue());
+		}
 	}
 
 	@Override
@@ -79,7 +91,6 @@ public class MyLinkedListMap<Key extends Comparable<Key>,Value> implements Map<K
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return list.size();
 	}
 

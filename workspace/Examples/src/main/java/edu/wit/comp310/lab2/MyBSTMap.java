@@ -8,6 +8,7 @@ import java.util.Set;
 /**
  * Implement a dictionary using AVL trees.
  *
+ * @see http://en.wikipedia.org/wiki/AVL_tree
  * @param <Key>
  * @param <Value>
  */

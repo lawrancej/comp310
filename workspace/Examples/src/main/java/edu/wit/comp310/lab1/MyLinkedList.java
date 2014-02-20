@@ -23,27 +23,30 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 		T data;
 		Node<T> next;
 	}
-	private void loopingExample() {
+	private Node<ValueType> getNodeAt(int index) {
 		// for (initialization; continueCondition; updateRule)
 		// for (int i = 0; i < size(); i++)
-		int index = 5;
 		int i = 0;
 		Node<ValueType> current;
 		for (current = first;
-				current != null && i < index - 1;
+				current != null && i < index;
 				current = current.next, i++);
-		
+		return current;
 	}
 	
 	@Override
 	public boolean add(ValueType arg0) {
-		if (this.isEmpty()) {
-			Node<ValueType> newNode = new Node<ValueType>();
-			newNode.data = arg0;
+		Node<ValueType> newNode = new Node<ValueType>();
+		newNode.data = arg0;
+		
+		if (isEmpty()) {
 			first = newNode;
-			last = newNode;
+		} else {
+			last.next = newNode;
 		}
-		return false;
+		last = newNode;
+		size++;
+		return true;
 	}
 
 	@Override
@@ -57,9 +60,11 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 	}
 
 	@Override
-	public boolean addAll(Collection<? extends ValueType> arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean addAll(Collection<? extends ValueType> collection) {
+		for (ValueType item : collection) {
+			add(item);
+		}
+		return true;
 	}
 
 	@Override
@@ -100,7 +105,6 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return size == 0;
 	}
 
@@ -108,16 +112,21 @@ public class MyLinkedList<ValueType> implements List<ValueType> {
 	public Iterator<ValueType> iterator() {
 		return new Iterator<ValueType>() {
 			Node<ValueType> current = first;
+			// The name is misleading: it should be: do we have an element?
 			@Override
 			public boolean hasNext() {
-				// is there an element after current?
-				return false;
+				// is there an element?
+				return current != null;
 			}
+			// The name is misleading: it should be: get current element's data and advance.
 			@Override
 			public ValueType next() {
+				// temporarily store current's data
+				ValueType temp = current.data;
 				// Advance current to next
-				// return current's data
-				return null;
+				current = current.next;
+				// return the temporary thing
+				return temp;
 			}
 			@Override
 			public void remove() {

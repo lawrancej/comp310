@@ -2,6 +2,7 @@ package edu.wit.comp310.lab2;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		example.accept(c);
 		// System.out.println(c.count);
 		
-		Searcher searcher = new Searcher("Luke");
+		Searcher<String> searcher = new Searcher<String>("Luke");
 		example.accept(searcher);
 		System.out.println(searcher.found); // print true, please!
 	}
@@ -79,7 +80,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		T needle;
 		
 		// Track the parent of the node to insert at
-		BinaryTreeNode<T> parent;
+		BinaryTreeNode<T> node;
 		// The original version just had a flag for found
 		boolean found = false;
 		public Searcher(T needle) {
@@ -90,7 +91,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 			// So, every time we visit, we should set the parent
 			// (the node where we want to do the insertion)
 			// to be the current node.
-			parent = node;
+			this.node = node;
 			int result = node.data.compareTo(needle);
 			if (result < 0) { // data < needle
 				// Visit the right side
@@ -178,14 +179,14 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 	}
 
 	@Override
-	public boolean containsKey(Object arg0) {
-		// TODO Auto-generated method stub
+	public boolean containsKey(Object key) {
+		// use the searcher visitor to find the key
 		return false;
 	}
 
 	@Override
-	public boolean containsValue(Object arg0) {
-		// TODO Auto-generated method stub
+	public boolean containsValue(Object value) {
+		// do a traversal to find a value
 		return false;
 	}
 
@@ -202,7 +203,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		Pair<Key, Value> entry = new Pair<Key,Value>((Key)key, null);
 		Searcher<Pair<Key,Value>> searcher = new Searcher<Pair<Key,Value>>(entry);
 		root.accept(searcher);
-		if (searcher.found) return searcher.parent.data.value;
+		if (searcher.found) return searcher.node.data.value;
 		return null;
 	}
 
@@ -250,20 +251,20 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 //			root.accept(new Debugger<Key, Value>());
 			// By this point, searcher ought to set the parent node
 			// Insert node into tree
-			if (searcher.parent.data.compareTo(entry) < 0) {
-				searcher.parent.right = newNode;
-				newNode.parent = searcher.parent;
+			if (searcher.node.data.compareTo(entry) < 0) {
+				searcher.node.right = newNode;
+				newNode.parent = searcher.node;
 				size++;
-			} else if (searcher.parent.data.compareTo(entry) > 0) {
-				searcher.parent.left = newNode;
-				newNode.parent = searcher.parent;
+			} else if (searcher.node.data.compareTo(entry) > 0) {
+				searcher.node.left = newNode;
+				newNode.parent = searcher.node;
 				size++;
 			} else {
 				// If we're here the node data is equal to the entry's key
 				// Here, we don't want to create a new node, but we've got one anyway
 				// So, let's just update the value
-				Value temp = searcher.parent.data.value;
-				searcher.parent.data.value = value;
+				Value temp = searcher.node.data.value;
+				searcher.node.data.value = value;
 				// we got return the previous value
 				// and we won't need to rebalance here
 				// since the tree shape hasn't changed.
@@ -278,13 +279,36 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 
 	@Override
 	public void putAll(Map<? extends Key, ? extends Value> arg0) {
-		// TODO Auto-generated method stub
+		// call put on everything in arg0
 		
+	}
+	
+	private static enum ChildStatus {LEFT_CHILD, RIGHT_CHILD, ROOT};
+	private static <T> ChildStatus getChildStatus(BinaryTreeNode<T> node) {
+		if (node.parent == null) {
+			return ChildStatus.ROOT;
+		} else if (node.parent.left == node) {
+			return ChildStatus.LEFT_CHILD;
+		} else {
+			return ChildStatus.RIGHT_CHILD;
+		}
+	};
+	private static <T> boolean isLeaf(BinaryTreeNode<T> node) {
+		return node.left == null && node.right == null;
 	}
 
 	@Override
-	public Value remove(Object arg0) {
-		// TODO Auto-generated method stub
+	public Value remove(Object key) {
+		Pair<Key,Value> entry = new Pair<Key,Value>((Key) key, null);
+		// Hard!!
+		// use the searcher to find the node.
+		Searcher<Pair<Key,Value>> searcher = new Searcher<Pair<Key,Value>>(entry);
+		root.accept(searcher);
+		// maybe there is no node to remove! huzzah, return null
+		if (searcher.node == null) return null;
+		// is it the root?
+		// is it a leaf?
+		// is it an interior node?
 		return null;
 	}
 
@@ -296,7 +320,8 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 
 	@Override
 	public Collection<Value> values() {
-		// TODO Auto-generated method stub
+		Collection<Value> result = new LinkedList<Value>();
+		// Do a tree traversal to collect values out
 		return null;
 	}
 

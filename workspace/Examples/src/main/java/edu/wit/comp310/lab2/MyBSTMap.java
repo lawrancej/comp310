@@ -283,6 +283,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		
 	}
 	
+	// NodeStatus would be a better name.. *Sigh*
 	private static enum ChildStatus {LEFT_CHILD, RIGHT_CHILD, ROOT};
 	private static <T> ChildStatus getChildStatus(BinaryTreeNode<T> node) {
 		if (node.parent == null) {
@@ -293,6 +294,7 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 			return ChildStatus.RIGHT_CHILD;
 		}
 	};
+	// Are we the leaf node?
 	private static <T> boolean isLeaf(BinaryTreeNode<T> node) {
 		return node.left == null && node.right == null;
 	}

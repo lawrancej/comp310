@@ -138,6 +138,22 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 			}
 		}
 	}
+	public static class KeyGatherer<K extends Comparable<K>,V> implements Visitor<Pair<K,V>> {
+		Set<K> set = new HashSet<K>();
+		@Override
+		public void visit(BinaryTreeNode<Pair<K,V>> node) {
+			// Process the node
+			set.add(node.data.key);
+			// Visit the left side
+			if (node.left != null) {
+				node.left.accept(this);
+			}
+			// Visit the right side
+			if (node.right != null) {
+				node.right.accept(this);
+			}
+		}
+	}
 	public static class InfixPrinter implements Visitor<String> {
 		@Override
 		public void visit(BinaryTreeNode<String> node) {
@@ -180,13 +196,13 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 
 	@Override
 	public boolean containsKey(Object key) {
-		// use the searcher visitor to find the key
+		// if keySet() is already implemented, this is straighforward
 		return false;
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-		// do a traversal to find a value
+		// if values() is already implemented, this is a no-brainer
 		return false;
 	}
 
@@ -215,9 +231,13 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 
 	@Override
 	public Set<Key> keySet() {
-		Set<Key> set = new HashSet<Key>();
+		KeyGatherer<Key,Value> gatherer = new KeyGatherer<Key,Value>();
 		// populate the set with every key in the the tree.
-		return null;
+		// Traverse the tree
+		root.accept(gatherer);
+//		gatherer.visit(root);
+		// return the set we got out.
+		return gatherer.set;
 	}
 	// At this point, the rebalancing is left to do
 	// Also, I wouldn't be surprised if there were bugs in here

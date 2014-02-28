@@ -304,14 +304,14 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 	}
 	
 	// NodeStatus would be a better name.. *Sigh*
-	private static enum ChildStatus {LEFT_CHILD, RIGHT_CHILD, ROOT};
-	private static <T> ChildStatus getChildStatus(BinaryTreeNode<T> node) {
+	private static enum NodeStatus {LEFT_CHILD, RIGHT_CHILD, ROOT};
+	private static <T> NodeStatus getNodeStatus(BinaryTreeNode<T> node) {
 		if (node.parent == null) {
-			return ChildStatus.ROOT;
+			return NodeStatus.ROOT;
 		} else if (node.parent.left == node) {
-			return ChildStatus.LEFT_CHILD;
+			return NodeStatus.LEFT_CHILD;
 		} else {
-			return ChildStatus.RIGHT_CHILD;
+			return NodeStatus.RIGHT_CHILD;
 		}
 	};
 	// Are we the leaf node?
@@ -328,9 +328,33 @@ public class MyBSTMap<Key extends Comparable<Key>,Value> implements Map<Key, Val
 		root.accept(searcher);
 		// maybe there is no node to remove! huzzah, return null
 		if (searcher.node == null) return null;
-		// is it the root?
-		// is it a leaf?
-		// is it an interior node?
+		switch (getNodeStatus(searcher.node)) {
+		case LEFT_CHILD:
+			break;
+		case RIGHT_CHILD:
+			break;
+		case ROOT:
+			// is it the root?
+			// is the root a leaf?
+			if (isLeaf(searcher.node)) {
+				root = null;
+			// does the root have no left child?
+			} else if (searcher.node.left == null) {
+				root = searcher.node.right;
+			// does the root have a left child?
+			} else {
+				BinaryTreeNode<Pair<Key,Value>> current;
+				// Go to the greatest node less than the root
+				for (current = searcher.node.left; current.right != null; current = current.right);
+				// Current is there now
+				root.data = current.data;
+				current.parent.right = current.left;
+			}
+			return searcher.node.data.value;
+		default:
+			break;
+		
+		}
 		return null;
 	}
 

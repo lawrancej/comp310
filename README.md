@@ -16,6 +16,7 @@ Agendas
 * [January 31](agendas/01-31.md) Binary search trees, and balancing them (AVL trees).
 * [February 6](agendas/02-06.md) Tree traversal, visitor pattern, searching.
 * [March 27](http://libgdx.badlogicgames.com/nightlies/docs/api/)
+* [March 28](https://github.com/libgdx/libgdx/wiki)
 
 Common Eclipse errors (and their solutions)
 -------------------------------------------
